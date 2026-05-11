@@ -93,7 +93,7 @@ export default function AnalyticsDashboard() {
                       dataKey="value"
                       stroke="none"
                     >
-                      {transportData.map((entry, index) => (
+                      {transportData.map((_, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>

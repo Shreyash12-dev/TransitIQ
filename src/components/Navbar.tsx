@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { Train, Moon, Sun } from "lucide-react"
 import { Button } from "./ui/button"

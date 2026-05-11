@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Search, Clock, Zap, Leaf, ShieldAlert } from "lucide-react"
+import { MapPin, Search, Clock, Zap, Leaf } from "lucide-react"
 
 export default function RoutePlanner() {
   const [isSearching, setIsSearching] = useState(false)

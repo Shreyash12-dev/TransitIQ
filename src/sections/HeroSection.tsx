@@ -16,7 +16,7 @@ export default function HeroSection() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.8, type: "spring" },
+      transition: { duration: 0.8, type: "spring" as const },
     },
   }
 
