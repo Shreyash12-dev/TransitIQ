@@ -1,24 +1,19 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
+
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { glowOnHover?: boolean }
->(({ className, glowOnHover = false, ...props }, ref) => {
-  // Destructure and ignore Framer Motion specific props that clash with standard HTML attributes
-  const { onDrag, onDragStart, onDragEnd, onPan, onPanStart, onPanEnd, ...safeProps } = props as any;
-  
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
   return (
-    <motion.div
-      whileHover={glowOnHover ? { y: -5 } : undefined}
+    <div
       className={cn(
-        "rounded-xl border bg-card text-card-foreground shadow-sm glass transition-all duration-300",
-        glowOnHover && "hover:neon-glow hover:border-primary/50",
+        "rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300",
         className
       )}
       ref={ref}
-      {...safeProps}
+      {...props}
     />
   )
 })

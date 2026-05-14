@@ -61,8 +61,7 @@ export default function DigitalWallet() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Balance Card */}
           <div className="space-y-6">
-            <Card className="glass border-teal-500/30 overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/20 rounded-full blur-3xl" />
+            <Card className="bg-card border overflow-hidden relative">
               <CardContent className="p-8">
                 <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">Available Balance</p>
                 <div className="text-5xl font-bold text-foreground mb-8">
@@ -107,17 +106,17 @@ export default function DigitalWallet() {
             </Card>
 
             <div className="grid grid-cols-2 gap-4">
-              <Button variant="outline" className="h-14 glass">
+              <Button variant="outline" className="h-14 bg-background">
                 <ArrowRightLeft className="w-4 h-4 mr-2 text-teal-500" /> Transfer
               </Button>
-              <Button variant="outline" className="h-14 glass">
+              <Button variant="outline" className="h-14 bg-background">
                 <ArrowUpRight className="w-4 h-4 mr-2 text-primary" /> Auto-Pay
               </Button>
             </div>
           </div>
 
           {/* Transactions */}
-          <Card className="glass">
+          <Card className="bg-card border shadow-sm">
             <CardHeader>
               <CardTitle className="text-xl">Recent Transactions</CardTitle>
             </CardHeader>

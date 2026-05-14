@@ -36,12 +36,12 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5, type: "spring" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b shadow-sm py-3" : "bg-transparent py-5"
+        isScrolled ? "bg-background border-b shadow-sm py-3" : "bg-background md:bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <a href="#home" onClick={(e) => handleScroll(e, "#home")} className="flex items-center gap-2 group cursor-pointer">
-          <div className="p-2 bg-primary text-primary-foreground rounded-lg group-hover:neon-glow transition-all">
+          <div className="p-2 bg-primary text-primary-foreground rounded-lg transition-all">
             <Train size={20} />
           </div>
           <span className="text-xl font-bold tracking-tight">Transit<span className="text-primary">IQ</span></span>

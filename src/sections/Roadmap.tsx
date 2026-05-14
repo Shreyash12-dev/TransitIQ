@@ -51,7 +51,7 @@ export default function Roadmap() {
                 </div>
                 
                 {/* Content */}
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border glass hover:border-primary/50 transition-colors">
+                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border bg-card shadow-sm hover:border-primary/50 transition-colors">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
                     <h3 className={`font-bold text-xl ${isCurrent ? 'text-primary' : ''}`}>{phase.phase}</h3>
                     <span className="text-sm font-medium text-muted-foreground bg-muted px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">{phase.date}</span>

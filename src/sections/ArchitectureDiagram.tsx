@@ -60,10 +60,10 @@ export default function ArchitectureDiagram() {
                 transition={{ duration: 0.5, delay: node.delay }}
                 className="w-full sm:w-[400px] md:w-[500px]"
               >
-                <Card className={`glass border-2 ${node.color} relative group`}>
+                <Card className={`bg-card shadow-sm border-2 ${node.color} relative group`}>
                   <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-${node.color.split('-')[1]}-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   <CardContent className="p-6 flex items-center gap-6 relative z-10">
-                    <div className={`p-4 rounded-xl bg-background/50 backdrop-blur-sm border border-border/50 ${node.iconColor}`}>
+                    <div className={`p-4 rounded-xl bg-background border border-border/50 ${node.iconColor}`}>
                       <node.icon size={32} />
                     </div>
                     <div className="text-left">

@@ -38,7 +38,7 @@ export default function AnalyticsDashboard() {
         {/* Top Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {stats.map((stat, idx) => (
-            <Card key={idx} className="glass">
+            <Card key={idx} className="bg-card border shadow-sm">
               <CardContent className="p-6 flex flex-col items-center justify-center text-center">
                 <stat.icon className={`${stat.color} w-8 h-8 mb-3`} />
                 <h3 className="text-3xl font-bold mb-1">{stat.value}</h3>
@@ -50,7 +50,7 @@ export default function AnalyticsDashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Chart */}
-          <Card className="glass lg:col-span-2">
+          <Card className="bg-card border shadow-sm lg:col-span-2">
             <CardHeader>
               <CardTitle>Weekly Usage Patterns</CardTitle>
             </CardHeader>
@@ -75,7 +75,7 @@ export default function AnalyticsDashboard() {
           </Card>
 
           {/* Pie Chart */}
-          <Card className="glass">
+          <Card className="bg-card border shadow-sm">
             <CardHeader>
               <CardTitle>Transport Mode Distribution</CardTitle>
             </CardHeader>

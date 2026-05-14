@@ -221,15 +221,15 @@ export default function RoutePlanner() {
           <p className="text-muted-foreground text-lg">AI-optimized routes considering real-time traffic and crowds.</p>
         </div>
 
-        <Card className={`glass border-primary/20 neon-glow p-2 md:p-6 ${isSameLocation ? 'mb-4' : 'mb-12'}`}>
-          <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 md:p-0">
+        <Card className={`border bg-card shadow-sm p-4 md:p-6 ${isSameLocation ? 'mb-4' : 'mb-12'}`}>
+          <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4 p-0">
             <div className="relative">
               <MapPin className={`absolute left-3 top-3 w-4 h-4 ${isSameLocation ? 'text-destructive' : 'text-muted-foreground'}`} />
               <Input placeholder="Enter Source (e.g. RSCOE)" value={source} onChange={(e) => setSource(e.target.value)} className={`pl-9 ${isSameLocation ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
             </div>
             <div className="relative">
               <MapPin className={`absolute left-3 top-3 w-4 h-4 ${isSameLocation ? 'text-destructive' : 'text-primary'}`} />
-              <Input placeholder="Enter Destination (e.g. Swargate)" value={destination} onChange={(e) => setDestination(e.target.value)} className={`pl-9 ${isSameLocation ? 'border-destructive focus-visible:ring-destructive' : 'border-primary/30'}`} />
+              <Input placeholder="Enter Destination (e.g. Swargate)" value={destination} onChange={(e) => setDestination(e.target.value)} className={`pl-9 ${isSameLocation ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
             </div>
             <div className="relative">
               <Clock className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
@@ -275,7 +275,7 @@ export default function RoutePlanner() {
                   transition={{ delay: idx * 0.1 }}
                 >
                   <Card 
-                    className={`hover:border-primary/50 transition-all cursor-pointer group ${isSelected ? 'border-primary shadow-[0_0_15px_rgba(59,130,246,0.3)] bg-primary/5' : ''}`}
+                    className={`hover:border-primary/50 transition-all cursor-pointer group overflow-hidden ${isSelected ? 'border-primary ring-1 ring-primary bg-primary/5' : ''}`}
                     onClick={() => {
                       setSelectedRoute(route.id);
                       const rData = { source: source || "Pune Station", destination: destination || "Shivajinagar", fare: route.fareVal, duration: route.duration, transportMode: route.name, congestion: route.congestionVal, routeName: route.name };
@@ -283,47 +283,68 @@ export default function RoutePlanner() {
                       window.dispatchEvent(new CustomEvent('routeSelected', { detail: rData }));
                     }}
                   >
-                    <CardContent className="p-6 flex flex-col md:flex-row items-center justify-between gap-4">
-                      <div className="flex items-center gap-4 w-full md:w-auto">
-                        <div className={`p-3 rounded-full transition-colors ${isSelected ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary group-hover:bg-primary/20'}`}>
-                          <route.icon size={24} />
-                        </div>
+                    <CardContent className="p-0 flex flex-col md:flex-row">
+                      {/* Left side: Timeline/Icons */}
+                      <div className="p-6 border-b md:border-b-0 md:border-r border-border w-full md:w-1/3 flex flex-col justify-between bg-muted/30">
                         <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <h4 className="font-semibold text-lg">{route.name}</h4>
-                            <Badge variant={route.badgeVariant}>{route.badge}</Badge>
+                          <div className="flex items-center gap-2 mb-6">
+                            <div className="p-2 bg-primary/10 rounded-md text-primary">
+                              <route.icon size={20} />
+                            </div>
+                            <h4 className="font-semibold text-foreground">{route.name}</h4>
                           </div>
-                          <div className="flex gap-4 text-sm text-muted-foreground">
-                            <span className="flex items-center gap-1"><Clock size={14} /> {route.duration}</span>
-                            <span className="flex items-center gap-1 text-primary font-medium">{route.fare}</span>
+                          <div className="flex flex-col relative pl-4 border-l-2 border-primary/30 space-y-6 my-2 ml-2">
+                             <div className="relative">
+                               <div className="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full border-2 border-primary bg-background"></div>
+                               <p className="text-sm font-medium">{source || "Pune Station"}</p>
+                               <p className="text-xs text-muted-foreground">{time}</p>
+                             </div>
+                             <div className="relative">
+                               <div className="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full border-2 border-destructive bg-background"></div>
+                               <p className="text-sm font-medium">{destination || "Shivajinagar"}</p>
+                               <p className="text-xs text-muted-foreground">+{route.duration}</p>
+                             </div>
                           </div>
                         </div>
                       </div>
-
-                      <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
-                        <div className="text-center">
-                          <p className="text-xs text-muted-foreground mb-1">Congestion</p>
-                          <Badge variant={route.congestionVal > 70 ? 'destructive' : route.congestionVal > 40 ? 'warning' : 'success'}>
-                            {route.congestionVal}%
-                          </Badge>
+                      
+                      {/* Right side: Details & Action */}
+                      <div className="p-6 w-full md:w-2/3 flex flex-col justify-between">
+                        <div className="flex justify-between items-start mb-4">
+                          <div>
+                            <Badge variant={route.badgeVariant} className="mb-2">{route.badge}</Badge>
+                            <p className="text-2xl font-bold text-primary">{route.fare}</p>
+                          </div>
+                          <div className="text-right space-y-1">
+                            <div className="flex items-center justify-end gap-1 text-sm text-muted-foreground">
+                              <Clock size={14} /> Duration: <span className="font-medium text-foreground">{route.duration}</span>
+                            </div>
+                            <div className="flex items-center justify-end gap-1 text-sm text-muted-foreground">
+                              <Leaf size={14} /> Eco Score: <span className="font-medium text-green-600">{route.ecoScore}</span>
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-center hidden sm:block">
-                          <p className="text-xs text-muted-foreground mb-1">Eco Score</p>
-                          <span className="text-green-500 font-bold">{route.ecoScore}</span>
+                        
+                        <div className="flex items-center justify-between border-t border-border pt-4 mt-auto">
+                           <div className="flex flex-col">
+                             <span className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Occupancy</span>
+                             <Badge variant={route.congestionVal > 70 ? 'destructive' : route.congestionVal > 40 ? 'warning' : 'success'}>
+                               {route.congestionVal}% Full
+                             </Badge>
+                           </div>
+                           <Button 
+                             variant={isSelected ? "default" : "outline"} 
+                             onClick={(e) => {
+                               e.stopPropagation();
+                               setSelectedRoute(route.id);
+                               const rData = { source: source || "Pune Station", destination: destination || "Shivajinagar", fare: route.fareVal, duration: route.duration, transportMode: route.name, congestion: route.congestionVal, routeName: route.name };
+                               localStorage.setItem('selectedTransitRoute', JSON.stringify(rData));
+                               window.dispatchEvent(new CustomEvent('routeSelected', { detail: rData }));
+                             }}
+                           >
+                             {isSelected ? "Selected" : "Select Route"}
+                           </Button>
                         </div>
-                        <Button 
-                          variant={isSelected ? "default" : "outline"} 
-                          className={isSelected ? "" : "group-hover:bg-primary group-hover:text-primary-foreground"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedRoute(route.id);
-                            const rData = { source: source || "Pune Station", destination: destination || "Shivajinagar", fare: route.fareVal, duration: route.duration, transportMode: route.name, congestion: route.congestionVal, routeName: route.name };
-                            localStorage.setItem('selectedTransitRoute', JSON.stringify(rData));
-                            window.dispatchEvent(new CustomEvent('routeSelected', { detail: rData }));
-                          }}
-                        >
-                          {isSelected ? "Selected" : "Select"}
-                        </Button>
                       </div>
                     </CardContent>
                   </Card>

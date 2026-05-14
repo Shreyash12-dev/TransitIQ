@@ -103,9 +103,7 @@ export default function QRTicketing() {
   }
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Decorative bg */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-500/10 rounded-full blur-[100px] -z-10 pointer-events-none" />
+    <section className="py-24 relative overflow-hidden bg-background">
 
       <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-16 max-w-6xl">
         <div className="flex-1 space-y-6 text-center lg:text-left">
@@ -162,7 +160,7 @@ export default function QRTicketing() {
             )}
             
             {ticketGenerated && !verified && (
-              <Button size="lg" variant="glow" onClick={handleVerify} disabled={isVerifying} className="gap-2">
+              <Button size="lg" variant="secondary" onClick={handleVerify} disabled={isVerifying} className="gap-2 border border-border">
                 {isVerifying ? "Verifying Scanner..." : "Simulate Scanner"}
               </Button>
             )}
@@ -177,7 +175,7 @@ export default function QRTicketing() {
               transition={{ duration: 0.6, type: "spring" }}
               className="perspective-1000"
             >
-              <Card className={`glass border-2 overflow-hidden relative transition-colors duration-500 ${verified ? 'border-green-500/50 shadow-[0_0_30px_rgba(34,197,94,0.3)]' : 'border-primary/20'}`}>
+              <Card className={`bg-card border-2 overflow-hidden relative transition-colors duration-500 ${verified ? 'border-green-600' : 'border-border'}`}>
                 {/* Header */}
                 <div className={`p-4 text-center text-white transition-colors duration-500 ${verified ? 'bg-green-600' : 'bg-primary'}`}>
                   <h3 className="font-bold text-lg">Universal Transit Pass</h3>
@@ -204,8 +202,8 @@ export default function QRTicketing() {
                       <p className="text-xs text-muted-foreground">Source</p>
                     </div>
                     <div className="w-1/3 flex justify-center">
-                      <div className="h-0.5 w-full bg-muted-foreground/30 relative">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary" />
+                      <div className="h-px w-full bg-border relative border-dashed border-b border-border">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full border border-primary bg-background" />
                       </div>
                     </div>
                     <div className="w-1/3 text-right">
@@ -221,11 +219,11 @@ export default function QRTicketing() {
                     </div>
                     {verified && (
                       <motion.div 
-                        initial={{ scale: 0, opacity: 0 }}
+                        initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm rounded-xl"
+                        className="absolute inset-0 flex items-center justify-center bg-background/90 rounded-xl border-2 border-green-600"
                       >
-                        <div className="text-center text-green-500 flex flex-col items-center">
+                        <div className="text-center text-green-600 flex flex-col items-center">
                           <CheckCircle2 className="w-16 h-16 mb-2" />
                           <span className="font-bold text-xl">Verified</span>
                         </div>
@@ -254,7 +252,7 @@ export default function QRTicketing() {
               </Card>
             </motion.div>
           ) : (
-            <Card className="glass h-[500px] flex items-center justify-center border-dashed border-2 border-muted-foreground/30">
+            <Card className="bg-muted/30 h-[500px] flex items-center justify-center border-dashed border-2 border-border shadow-none">
               <div className="text-center text-muted-foreground p-6">
                 <QrCode className="w-16 h-16 mx-auto mb-4 opacity-50" />
                 <p>Click "Generate Mock Ticket" to view the smart QR pass.</p>

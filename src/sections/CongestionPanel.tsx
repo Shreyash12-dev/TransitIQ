@@ -104,7 +104,7 @@ export default function CongestionPanel() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* AI Insights Sidebar */}
           <div className="space-y-6">
-            <Card className="glass border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.1)]">
+            <Card className="bg-card border shadow-sm">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center justify-between">
                   <span className="flex items-center gap-2"><Activity className="text-purple-500 w-5 h-5" /> Current Status</span>
@@ -117,7 +117,7 @@ export default function CongestionPanel() {
               </CardContent>
             </Card>
 
-            <Card className="glass">
+            <Card className="bg-card border shadow-sm">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
                   <TrendingUp className="text-blue-500 w-5 h-5" /> Peak Hour Insights
@@ -156,7 +156,7 @@ export default function CongestionPanel() {
           </div>
 
           {/* Chart Area */}
-          <Card className="lg:col-span-2 glass overflow-hidden">
+          <Card className="lg:col-span-2 bg-card border shadow-sm overflow-hidden">
             <CardHeader>
               <CardTitle>Today's Congestion Trend</CardTitle>
             </CardHeader>

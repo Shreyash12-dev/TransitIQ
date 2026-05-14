@@ -48,9 +48,9 @@ export default function FeaturesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
             >
-              <Card glowOnHover className="h-full group border-primary/10">
+              <Card className="h-full group border-border">
                 <CardHeader className="items-center text-center pb-2">
-                  <div className={`p-5 rounded-2xl bg-background/50 backdrop-blur-sm mb-4 group-hover:neon-glow transition-all duration-300 ${feature.color}`}>
+                  <div className={`p-5 rounded-2xl bg-background border border-border mb-4 transition-all duration-300 ${feature.color}`}>
                     <feature.icon size={40} strokeWidth={1.5} />
                   </div>
                   <CardTitle className="text-xl">{feature.title}</CardTitle>
